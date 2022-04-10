@@ -235,7 +235,7 @@ BITLY_TOKEN = os.environ.get("BITLY_TOKEN", None)
 TERM_ALIAS = os.environ.get("TERM_ALIAS", "Gojo-Userbot")
 
 # Bot version
-BOT_VER = os.environ.get("BOT_VER", "2.0.0")
+BOT_VER = os.environ.get("BOT_VER", "2.1.0")
 
 # Default .alive username
 ALIVE_USERNAME = os.environ.get("ALIVE_USERNAME", None)
