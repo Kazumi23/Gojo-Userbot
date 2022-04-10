@@ -45,6 +45,11 @@ LOGS.info(
 
 LOGS.info(f"Gojo-Userbot ⚙️ V{BOT_VER} [🔥 BERHASIL DIAKTIFKAN! 🔥]")
 
+if not BOTLOG_CHATID:
+    LOGS.info(
+        "Vars BOTLOG_CHATID tidak terisi, Proses Membuat Grup Otomatis."
+    )
+    bot.loop.run_until_complete(autopilot())
 
 async def pocong_userbot_on():
     try:
