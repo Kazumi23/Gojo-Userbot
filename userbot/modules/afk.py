@@ -7,11 +7,10 @@ from datetime import datetime
 
 from telethon.tl import functions, types
 
-from userbot import BOTLOG_CHATID
+
 from userbot import CMD_HANDLER as cmd
 from userbot import CMD_HELP, bot, owner
-from userbot.events import poci_cmd
-from userbot.utils import bash
+from userbot.utils import bash, poci_cmd, pocong_handler
 
 USER_AFK = {}
 afk_time = None
