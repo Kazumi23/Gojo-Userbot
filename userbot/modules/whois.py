@@ -16,10 +16,10 @@ from telethon.utils import get_input_location
 
 from userbot import CMD_HANDLER as cmd
 from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot
-from userbot.utils import poci_cmd
+from userbot.utils import edit_or_reply, poci_cmd
 
 
-@bot.on(poci_cmd(pattern=r"whois(?: |$)(.*)", outgoing=True))
+@poci_cmd(pattern="whois(?: |$)(.*)")
 async def who(event):
 
     await event.edit("`Mengambil Informasi Pengguna Ini...`")
