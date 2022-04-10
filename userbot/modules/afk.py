@@ -16,7 +16,8 @@ last_afk_message = {}
 last_afk_msg = {}
 afk_start = {}
 
-@bot.on(poci_cmd(outgoing=True, pattern="afk(?: |$)(.*)"))
+
+@pocong_handler(outgoing=True)
 async def _(event):
     if event.fwd_from:
         return
