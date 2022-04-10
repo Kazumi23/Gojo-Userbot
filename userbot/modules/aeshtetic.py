@@ -22,7 +22,7 @@ def aesthetify(string):
         yield chr(c)
 
 
-@bot.on(poci_cmd(outgoing=True, pattern="ae(?: |$)(.*)"))
+@poci_cmd(pattern="ae(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
