@@ -8,7 +8,6 @@ from telethon.tl import functions, types
 
 from userbot import CMD_HANDLER as cmd
 from userbot import CMD_HELP, bot, owner
-from userbot.utils import poci_cmd
 
 USER_AFK = {}
 afk_time = None
