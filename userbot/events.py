@@ -19,7 +19,6 @@ from telethon import events
 from userbot import CMD_HANDLER, CMD_LIST, DEFAULT, bot
 
 
-
 def poci_cmd(pattern=None, command=None, **args):
     args["func"] = lambda e: e.via_bot_id is None
     stack = inspect.stack()
