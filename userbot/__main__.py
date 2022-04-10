@@ -18,7 +18,7 @@ from telethon.tl.functions.channels import InviteToChannelRequest, JoinChannelRe
 from userbot import BOT_TOKEN, BOT_USERNAME, BOT_VER, BOTLOG_CHATID
 from userbot import LOGS, bot, call_py
 from userbot.modules import ALL_MODULES
-from userbot.utils import autopilot, autobot, checking
+from userbot.utils import autobot, checking
 
 try:
     bot.start()
