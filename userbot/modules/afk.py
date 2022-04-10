@@ -5,6 +5,7 @@
 import asyncio
 from datetime import datetime
 
+from telethon.tl import functions, types
 
 from userbot import CMD_HANDLER as cmd
 from userbot import CMD_HELP
