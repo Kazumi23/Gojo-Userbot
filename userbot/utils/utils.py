@@ -1,7 +1,6 @@
 # Credits: @mrismanaziz
 # FROM Man-Userbot <https://github.com/mrismanaziz/Man-Userbot>
 # ReCode by @Gojo_satoru44
-
 import asyncio
 import importlib
 import logging
