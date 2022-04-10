@@ -2,7 +2,6 @@
 #
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
-#
 # Ported for Lord-Userbot By liualvinas/Alvin
 
 from telethon import events
