@@ -126,6 +126,7 @@ def register(**args):
     disable_errors = args.get("disable_errors", False)
     insecure = args.get("insecure", False)
     args.get("own", False)
+    args.get("sudo", False)
 
     if pattern is not None and not pattern.startswith("(?i)"):
         args["pattern"] = "(?i)" + pattern
