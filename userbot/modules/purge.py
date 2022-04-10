@@ -6,7 +6,6 @@
 # Ported by @mrismanaziz
 # FROM Man-Userbot <https://github.com/mrismanaziz/Man-Userbot>
 # Recode by @Gojo_satoru44
-#
 """ Modul Userbot untuk menghapus pesan yang tidak dibutuhkan (chat spam atau lainnya)."""
 
 
