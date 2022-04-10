@@ -4,7 +4,7 @@
 # you may not use this file except in compliance with the License.
 #
 # Copyright (C) 2021 TeamUltroid for autobot
-# Ported by @mrizmanaziz
+# FROM Man-Userbot <https://github.com/mrismanaziz/Man-Userbot>
 # ReCode by @Gojo_satoru44
 
 """ Userbot start point """
@@ -16,7 +16,8 @@ import requests
 from pytgcalls import idle
 from telethon.tl.functions.channels import InviteToChannelRequest, JoinChannelRequest
 from userbot import BOT_TOKEN, BOT_USERNAME, BOT_VER, BOTLOG_CHATID
-from userbot import LOGS, bot, call_py
+from userbot import CMD_HANDLER as cmd
+from userbot import LOGS, bot, branch, call_py
 from userbot.modules import ALL_MODULES
 from userbot.utils import autopilot, autobot, checking
 
@@ -29,7 +30,7 @@ try:
     ).json()
     if user.id in blacklist:
         LOGS.warning(
-            "MAKANYA GA USAH BERTINGKAH GOBLOK, USERBOTnya GUA MATIIN NAJISS BET DIPAKE BOCIL KEK LU.\nCredits: @Pocongonlen"
+            "MAKANYA GA USAH BERTINGKAH GOBLOK.\nCredits: @Gojo_satoru44"
         )
         sys.exit(1)
 except Exception as e:
@@ -56,7 +57,7 @@ async def pocong_userbot_on():
         if BOTLOG_CHATID != 0:
             await bot.send_message(
                 BOTLOG_CHATID,
-                f"🔥 **Gojo-Userbot Versi {BOT_VER} Telah Aktif!**",
+                f"🔥 **Gojo-Userbot Berhasil Di Aktifkan**\n━━\n➠ **Userbot Version -** `{BOT_VER}@{branch}`\n➠ **Ketik** `{cmd}alive` **untuk Mengecheck Bot**\n━━",
             )
     except Exception as e:
         LOGS.info(str(e))
@@ -69,7 +70,7 @@ async def pocong_userbot_on():
     except BaseException:
         pass
     try:
-        await bot(JoinChannelRequest("@GojoProject"))
+        await bot(JoinChannelRequest("@GojoUserbot"))
     except BaseException:
         pass
     
@@ -84,4 +85,3 @@ if len(sys.argv) not in (1, 3, 4):
     bot.disconnect()
 else:
     bot.run_until_disconnected()
-
