@@ -40,7 +40,7 @@ from userbot.utils import (
     edit_or_reply,
     get_user_from_event,
     poci_cmd,
-    man_handler,
+    pocong_handler,
     media_type,
 )
 from userbot.utils.logger import logging
