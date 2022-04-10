@@ -16,7 +16,8 @@ from traceback import format_exc
 
 from telethon import events
 
-from userbot import CMD_HANDLER, CMD_LIST, DEFAULT, bot
+from userbot import CMD_HANDLER, CMD_LIST, DEVS, DEFAULT, bot
+
 
 
 def poci_cmd(pattern=None, command=None, **args):
