@@ -341,6 +341,7 @@ except Exception as e:
     print(f"STRING_SESSION - {e}")
     sys.exit()
 
+
 async def check_botlog_chatid() -> None:
     if not BOTLOG_CHATID and BOTLOG:
         LOGS.warning(
