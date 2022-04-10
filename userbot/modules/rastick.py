@@ -2,7 +2,7 @@ import random
 
 from userbot import CMD_HANDLER as cmd
 from userbot import CMD_HELP
-from userbot.utils import deEmojify, edit_or_reply, poci_cmd
+from userbot.utils import deEmojify, edit_delete, edit_or_reply, poci_cmd
 
 
 @poci_cmd(pattern="rst(?: |$)(.*)")
