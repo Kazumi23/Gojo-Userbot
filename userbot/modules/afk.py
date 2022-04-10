@@ -2,6 +2,7 @@
 # PocongUserbot < https://github.com/poocong/PocongUserbot
 # Recode by @Gojo_satoru44
 
+import asyncio
 from datetime import datetime
 
 
