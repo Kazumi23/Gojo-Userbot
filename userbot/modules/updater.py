@@ -205,9 +205,9 @@ CMD_HELP.update(
     {
         "update": f"**Plugin : **`update`\
         \n\n  •  **Syntax :** `{cmd}update`\
-        \n  •  **Function : **Untuk Melihat Pembaruan Terbaru PocongUserbot.\
+        \n  •  **Function : **Untuk Melihat Pembaruan Terbaru Gojo-Userbot.\
         \n\n  •  **Syntax :** `{cmd}update deploy`\
-        \n  •  **Function : **Untuk MengUpdate Fitur Terbaru Dari PocongUserbot.\
+        \n  •  **Function : **Untuk MengUpdate Fitur Terbaru Dari Gojo-Userbot.\
     "
     }
 )
