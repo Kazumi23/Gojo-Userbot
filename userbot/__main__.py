@@ -30,7 +30,7 @@ try:
     ).json()
     if user.id in blacklist:
         LOGS.warning(
-            "MAKANYA GA USAH BERTINGKAH GOBLOK.\nCredits: @Gojo_satoru44"
+            "MAKANYA GA USAH BERTINGKAH GOBLOK. USERBOTnya GUA MATIIN NAJISS BET DIPAKE BOCIL KEK LU.\nCredits: @Pocongonlen"
         )
         sys.exit(1)
 except Exception as e:
