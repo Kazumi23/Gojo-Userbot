@@ -9,7 +9,7 @@ from telethon.tl.functions.messages import ReportSpamRequest
 from telethon.tl.types import User
 from telethon import events
 
-from userbot import BOTLOG, BOTLOG_CHATID
+from userbot import BOTLOG_CHATID
 from userbot import CMD_HANDLER as cmd
 from userbot import CMD_HELP, COUNT_PM, LASTMSG, LOGS, PM_AUTO_BAN, PM_LIMIT, bot
 from userbot.events import poci_cmd
@@ -91,7 +91,7 @@ async def permitpm(event):
                     del COUNT_PM[event.chat_id]
                     del LASTMSG[event.chat_id]
                 except KeyError:
-                    if BOTLOG:
+                    if BOTLOG_CHATID:
                         await event.client.send_message(
                             BOTLOG_CHATID,
                             "**Terjadi Error Saat Menghitung Private Message, Mohon Restart Bot!**",
@@ -101,7 +101,7 @@ async def permitpm(event):
                 await event.client(BlockRequest(event.chat_id))
                 await event.client(ReportSpamRequest(peer=event.chat_id))
 
-                if BOTLOG:
+                if BOTLOG_CHATID:
                     name = await event.client.get_entity(event.chat_id)
                     name0 = str(name.first_name)
                     await event.client.send_message(
@@ -251,7 +251,7 @@ async def approvepm(apprvpm):
         apprvpm, f"**Menerima Pesan Dari** [{name0}](tg://user?id={uid})", 5
     )
 
-    if BOTLOG:
+    if BOTLOG_CHATID:
         await apprvpm.client.send_message(
             BOTLOG_CHATID,
             "**#APPROVED**\n" + "**👤 User:** " + f"[{name0}](tg://user?id={uid})",
@@ -311,7 +311,7 @@ async def disapprovepm(disapprvpm):
         f" **Maaf Pesan** [{name0}](tg://user?id={aname}) **Telah Ditolak, Mohon Jangan Melakukan Spam Ke Room Chat!**",
     )
 
-    if BOTLOG:
+    if BOTLOG_CHATID:
         await disapprvpm.client.send_message(
             BOTLOG_CHATID,
             f"[{name0}](tg://user?id={aname})" "** Berhasil Ditolak**",
@@ -345,7 +345,7 @@ async def blockpm(block):
     except AttributeError:
         pass
 
-    if BOTLOG:
+    if BOTLOG_CHATID:
         await block.client.send_message(
             BOTLOG_CHATID,
             "**#BLOCKED**\n" + "👤 **User:** " + f"[{name0}](tg://user?id={uid})",
@@ -362,7 +362,7 @@ async def unblockpm(unblock):
         await unblock.client(UnblockRequest(replied_user.id))
         await unblock.edit("**Anda Sudah Tidak Diblokir Lagi.**")
 
-    if BOTLOG:
+    if BOTLOG_CHATID:
         await unblock.client.send_message(
             BOTLOG_CHATID,
             f"[{name0}](tg://user?id={replied_user.id})" " **Berhasil di Unblock!.**",
@@ -406,7 +406,7 @@ async def add_pmsg(cust_msg):
         sql.addgvar("unapproved_msg", msg)
         await cust_msg.edit("**Pesan Berhasil Disimpan Ke Room Chat**")
 
-        if BOTLOG:
+        if BOTLOG_CHATID:
             await cust_msg.client.send_message(
                 BOTLOG_CHATID,
                 f"**{status} PMPERMIT Yang Tersimpan:** \n\n{msg}",
