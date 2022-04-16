@@ -3,7 +3,7 @@
 # Licensed under the Raphielscape Public License, Version 1.c (the "License");
 # you may not use this file except in compliance with the License.
 #
-Recode by @Gojo_satoru44
+# Recode by @mrismanaziz
 # FROM Man-Userbot <https://github.com/mrismanaziz/Man-Userbot>
 # t.me/SharingUserbot & t.me/Lunatic0de
 #
@@ -58,6 +58,8 @@ LFM_LOG_DISABLED = "**last.fm logging to bot log is now disabled.**"
 LFM_LOG_ERR = "**No option specified.**"
 ERROR_MSG = "**last.fm module halted, got an unexpected error.**"
 # ================================================
+
+
 class LASTFM:
     def __init__(self):
         self.ARTIST = 0
@@ -66,6 +68,7 @@ class LASTFM:
         self.LASTFMCHECK = False
         self.RUNNING = False
         self.LastLog = False
+
 
 LASTFM_ = LASTFM()
 
@@ -87,10 +90,12 @@ async def gettags(track=None, isNowPlaying=None, playing=None):
     tags = sub("_#", " #", tags)
     return tags
 
+
 async def artist_and_song(track):
     return f"{track.track}"
 
-async def get_curr_track(lfmbio):
+
+async def get_curr_track(lfmbio):  # sourcery no-metrics
     oldartist = ""
     oldsong = ""
     while LASTFM_.LASTFMCHECK:
@@ -104,10 +109,7 @@ async def get_curr_track(lfmbio):
             LASTFM_.ARTIST = playing.get_artist()
             oldsong = environ.get("oldsong", None)
             oldartist = environ.get("oldartist", None)
-            if playing is not None and SONG != oldsong and ARTIST != oldartist:
-                environ["oldsong"] = str(SONG)
-                environ["oldartist"] = str(ARTIST)
-                if (
+            if (
                 playing is not None
                 and LASTFM_.SONG != oldsong
                 and LASTFM_.ARTIST != oldartist
@@ -129,44 +131,84 @@ async def get_curr_track(lfmbio):
                     await lfmbio.client(UpdateProfileRequest(about=short_bio))
             if playing is None and user_info.about != DEFAULT_BIO:
                 await sleep(6)
-                await bot(UpdateProfileRequest(about=DEFAULT_BIO))
-                if BOTLOG and LastLog:
-                    await bot.send_message(
-                        BOTLOG_CHATID, f"**Reset bio back to**\n{DEFAULT_BIO}"
+                await lfmbio.client(UpdateProfileRequest(about=DEFAULT_BIO))
+                if BOTLOG_CHATID and LASTFM_.LastLog:
+                    await lfmbio.client.send_message(
+                        BOTLOG_CHATID, f"Reset bio back to\n{DEFAULT_BIO}"
                     )
         except AttributeError:
             try:
                 if user_info.about != DEFAULT_BIO:
                     await sleep(6)
-                    await lfmbio.client(UpdateProfileRequest(about=DEFAULT_BIO))
-                if BOTLOG_CHATID and LASTFM_.LastLog:
-                    await lfmbio.client.send_message(
-                        BOTLOG_CHATID, f"Reset bio back to\n{DEFAULT_BIO}"
+                    await bot(UpdateProfileRequest(about=DEFAULT_BIO))
+                    if BOTLOG_CHATID and LASTFM_.LastLog:
+                        await lfmbio.client.send_message(
+                            BOTLOG_CHATID, f"Reset bio back to\n{DEFAULT_BIO}"
                         )
             except FloodWaitError as err:
-                if BOTLOG and LastLog:
-                    await bot.send_message(
-                        BOTLOG_CHATID, f"**Error changing bio:**\n{err}"
+                if BOTLOG_CHATID and LASTFM_.LastLog:
+                    await lfmbio.client.send_message(
+                        BOTLOG_CHATID, f"Error changing bio:\n{err}"
                     )
-        except FloodWaitError as err:
-            if BOTLOG and LastLog:
-                await bot.send_message(BOTLOG_CHATID, f"**Error changing bio:**\n{err}")
-        except (WSError, MalformedResponseError, AboutTooLongError) as err:
-            if BOTLOG and LastLog:
-                await bot.send_message(BOTLOG_CHATID, f"**Error changing bio:**\n{err}")
-        await sleep(10)
-    RUNNING = False
+        except (
+            FloodWaitError,
+            WSError,
+            MalformedResponseError,
+            AboutTooLongError,
+        ) as err:
+            if BOTLOG_CHATID and LASTFM_.LastLog:
+                await lfmbio.client.send_message(
+                    BOTLOG_CHATID, f"Error changing bio:\n{err}"
+                )
+        await sleep(2)
+    LASTFM_.RUNNING = False
 
 
-@bot.on(poci_cmd(outgoing=True, pattern=r"lastbio (on|off)"))
+@poci_cmd(pattern="lastfm$")
+async def last_fm(lastFM):
+    await lastFM.edit("Processing...")
+    preview = None
+    playing = User(LASTFM_USERNAME, lastfm).get_now_playing()
+    username = f"https://www.last.fm/user/{LASTFM_USERNAME}"
+    if playing is not None:
+        try:
+            image = User(LASTFM_USERNAME, lastfm).get_now_playing().get_cover_image()
+        except IndexError:
+            image = None
+        tags = await gettags(isNowPlaying=True, playing=playing)
+        rectrack = parse.quote(f"{playing}")
+        rectrack = sub("^", "https://open.spotify.com/search/", rectrack)
+        if image:
+            output = f"[‎]({image})[{LASTFM_USERNAME}]({username}) __is now listening to:__\n\n• [{playing}]({rectrack})\n"
+            preview = True
+        else:
+            output = f"[{LASTFM_USERNAME}]({username}) __is now listening to:__\n\n• [{playing}]({rectrack})\n"
+    else:
+        recent = User(LASTFM_USERNAME, lastfm).get_recent_tracks(limit=3)
+        playing = User(LASTFM_USERNAME, lastfm).get_now_playing()
+        output = f"[{LASTFM_USERNAME}]({username}) __was last listening to:__\n\n"
+        for i, track in enumerate(recent):
+            LOGS.info(i)
+            printable = await artist_and_song(track)
+            tags = await gettags(track)
+            rectrack = parse.quote(str(printable))
+            rectrack = sub("^", "https://open.spotify.com/search/", rectrack)
+            output += f"• [{printable}]({rectrack})\n"
+            if tags:
+                output += f"`{tags}`\n\n"
+    if preview is not None:
+        await lastFM.edit(f"{output}", parse_mode="md", link_preview=True)
+    else:
+        await lastFM.edit(f"{output}", parse_mode="md")
+
+
+@poci_cmd(pattern="lastbio (on|off)")
 async def lastbio(lfmbio):
     arg = lfmbio.pattern_match.group(1).lower()
-    global LASTFMCHECK
-    global RUNNING
     if arg == "on":
         setrecursionlimit(700000)
-        if not LASTFMCHECK:
-            LASTFMCHECK = True
+        if not LASTFM_.LASTFMCHECK:
+            LASTFM_.LASTFMCHECK = True
             environ["errorcheck"] = "0"
             await lfmbio.edit(LFM_BIO_ENABLED)
             await sleep(4)
@@ -174,27 +216,26 @@ async def lastbio(lfmbio):
         else:
             await lfmbio.edit(LFM_BIO_RUNNING)
     elif arg == "off":
-        LASTFMCHECK = False
-        RUNNING = False
-        await bot(UpdateProfileRequest(about=DEFAULT_BIO))
+        LASTFM_.LASTFMCHECK = False
+        LASTFM_.RUNNING = False
+        await lfmbio.client(UpdateProfileRequest(about=DEFAULT_BIO))
         await lfmbio.edit(LFM_BIO_DISABLED)
     else:
-        await lfmbio.edit(LFM_ERR_NO_OPT)
+        await lfmbio.edit(LFM_BIO_ERR)
 
 
-@bot.on(poci_cmd(outgoing=True, pattern=r"lastlog (on|off)"))
+@poci_cmd(pattern="lastlog (on|off)")
 async def lastlog(lstlog):
     arg = lstlog.pattern_match.group(1).lower()
-    global LastLog
-    LastLog = False
+    LASTFM_.LastLog = False
     if arg == "on":
-        LastLog = True
+        LASTFM_.LastLog = True
         await lstlog.edit(LFM_LOG_ENABLED)
     elif arg == "off":
-        LastLog = False
+        LASTFM_.LastLog = False
         await lstlog.edit(LFM_LOG_DISABLED)
     else:
-        await lstlog.edit(LFM_ERR_NO_OPT)
+        await lstlog.edit(LFM_LOG_ERR)
 
 
 CMD_HELP.update(
