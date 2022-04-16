@@ -61,7 +61,7 @@ async def variable(var):
             await xx.edit("**Mohon Ubah Var** `BOTLOG` **Ke** `True`")
             return False
         if variable in heroku_var:
-            if BOTLOG:
+            if BOTLOG_CHATID:
                 await var.client.send_message(
                     BOTLOG_CHATID,
                     "**Logger : #SYSTEM**\n\n"
@@ -107,7 +107,7 @@ async def set_var(var):
     variable = var.pattern_match.group(1)
     value = var.pattern_match.group(2)
     if variable in heroku_var:
-        if BOTLOG:
+        if BOTLOG_CHATID:
             await var.client.send_message(
                 BOTLOG_CHATID,
                 "**Logger : #SYSTEM**\n\n"
