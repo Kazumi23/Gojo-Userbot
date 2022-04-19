@@ -43,6 +43,7 @@ KATAPOCONG = [
     "Rombongan mu bukan sama sekali ancaman bagi ku!",
     "Bicara tentang cinta? hahaha sy sudah tdk tertarik dengan itu.",
     "Kau tidk mengerti akan penderitaan ku",
+    "Jika diam mu bijak, maka diam lah",
 ]
 
 
