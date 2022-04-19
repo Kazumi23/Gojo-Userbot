@@ -1,10 +1,10 @@
 # Credits: @mrismanaziz
-# Recode by @Gojo_satoru44
+# Recode by @greyyvbss
 
 from telethon.events import ChatAction
 
-from userbot import DEVS, bot, owner
-from userbot.events import poci_cmd, register
+from userbot import DEVS, bot
+from userbot.events import register
 from userbot.utils import get_user_from_event, poci_cmd
 
 # Ported For Lord-Userbot by liualvinas/Alvin
@@ -50,7 +50,7 @@ async def gben(userbot):
     if sender.id != me.id:
         dark = await dc.reply("`Gbanning...`")
     else:
-        dark = await dc.edit("`Memproses Global Banned Jamet..`")
+        dark = await dc.edit("`Memproses Global Banned Jamet Tele..`")
     me = await userbot.client.get_me()
     await dark.edit("`Global Banned Akan Segera Aktif..`")
     my_mention = "[{}](tg://user?id={})".format(me.first_name, me.id)
@@ -109,8 +109,7 @@ async def gben(userbot):
         f"**Action:** `Global Banned by {owner}`"
     )
 
-
-@poci_cmd(pattern="ungband(?: |$)(.*)")
+@poci_cmd(pattern=r"ungband(?: |$)(.*)")
 @register(pattern=r"^\.cungband(?: |$)(.*)", sudo=True)
 async def gunben(userbot):
     dc = userbot
@@ -140,7 +139,7 @@ async def gunben(userbot):
     if user:
         if user.id in DEVS:
             return await dark.edit(
-                "**Developer Tidak Bisa Terkena Perintah Ini, Karna Dia Pembuat saya**"
+                "**Grey Tidak Bisa Terkena Perintah Ini, Karna Dia Pembuat saya**"
             )
         try:
             from userbot.modules.sql_helper.gmute_sql import ungmute
