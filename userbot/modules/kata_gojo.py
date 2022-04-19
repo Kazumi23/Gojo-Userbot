@@ -44,6 +44,7 @@ KATAPOCONG = [
     "Bicara tentang cinta? hahaha sy sudah tdk tertarik dengan itu.",
     "Kau tidk mengerti akan penderitaan ku",
     "Jika diam mu bijak, maka diam lah",
+    "Jadilah `KUAT` Untuk segala hal yang membuatmu patah.",
 ]
 
 
