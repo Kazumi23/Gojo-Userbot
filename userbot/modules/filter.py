@@ -1,7 +1,4 @@
-import re
 
-from telethon import events
-from telethon.utils import get_display_name
 from userbot import BLACKLIST_CHAT, BOTLOG_CHATID
 from userbot import CMD_HANDLER as cmd
 from userbot import CMD_HELP, bot
