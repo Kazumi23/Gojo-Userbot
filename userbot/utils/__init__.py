@@ -26,6 +26,7 @@ from .tools import (
     deEmojify,
     download_lagu,
     edit_delete,
+    text_set,
     edit_or_reply,
     extract_time,
     human_to_bytes,
