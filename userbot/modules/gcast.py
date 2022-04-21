@@ -9,7 +9,7 @@
 import asyncio
 
 from requests import get
-from telethon.errors.rpcerrorlist import FloodWaitError
+from telethon.errors import FloodWaitError
 
 from userbot import CMD_HANDLER as cmd
 from userbot import CMD_HELP, DEVS, HEROKU_APP_NAME
