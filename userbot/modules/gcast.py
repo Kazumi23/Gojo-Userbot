@@ -7,10 +7,13 @@
 # Recode by @Gojo_satoru44
 
 import asyncio
+import os
 
+import heroku3
 from requests import get
 from telethon.errors import FloodWaitError
 
+from userbot import BLACKLIST_GCAST
 from userbot import CMD_HANDLER as cmd
 from userbot import CMD_HELP, DEVS, HEROKU_APP_NAME
 from userbot.utils import edit_delete, edit_or_reply, poci_cmd
@@ -29,11 +32,13 @@ while 0 < 6:
 
 del _GCAST_BLACKLIST
 
+Heroku = heroku3.from_key(HEROKU_API_KEY)
+heroku_api = "https://api.heroku.com"
+blchat = os.environ.get("BLACKLIST_GCAST") or ""
 
 @poci_cmd(pattern="gcast(?: |$)(.*)")
 async def gcast(event):
-    xx = event.pattern_match.group(1)
-    if xx:
+    if xx := event.pattern_match.group(1):
         msg = xx
     elif event.is_reply:
         msg = await event.get_reply_message()
@@ -45,7 +50,7 @@ async def gcast(event):
     async for x in event.client.iter_dialogs():
         if x.is_group:
             chat = x.id
-            if chat not in GCAST_BLACKLIST:
+            if chat not in GCAST_BLACKLIST and chat not in BLACKLIST_GCAST:
                 try:
                     await event.client.send_message(chat, msg)
                     await asyncio.sleep(0.1)
@@ -63,8 +68,7 @@ async def gcast(event):
 
 @poci_cmd(pattern="gucast(?: |$)(.*)")
 async def gucast(event):
-    xx = event.pattern_match.group(1)
-    if xx:
+    if xx := event.pattern_match.group(1):
         msg = xx
     elif event.is_reply:
         msg = await event.get_reply_message()
