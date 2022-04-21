@@ -12,7 +12,7 @@ from requests import get
 from telethon.errors.rpcerrorlist import FloodWaitError
 
 from userbot import CMD_HANDLER as cmd
-from userbot import CMD_HELP, DEVS, HEROKU_API_KEY, HEROKU_APP_NAME
+from userbot import CMD_HELP, DEVS, HEROKU_APP_NAME
 from userbot.utils import edit_delete, edit_or_reply, poci_cmd
 
 while 0 < 6:
