@@ -26,6 +26,7 @@ from telethon.tl.functions.channels import (
     GetFullChannelRequest,
     GetParticipantsRequest,
     InviteToChannelRequest,
+    LeaveChannelRequest,
 )
 from telethon.tl.functions.messages import GetFullChatRequest, GetHistoryRequest
 from telethon.tl.types import (
@@ -128,8 +129,26 @@ async def kikme(leave):
         )
     await edit_or_reply(leave, "**GC NYA JELEK GOBLOK KELUAR DULU AH CROTT** 🥴")
     await leave.client.kick_participant(leave.chat_id, "me")
-
-
+    
+    
+@poci_cmd(pattern="leaveall$")
+async def kickmeall(event):
+     Kyy = await edit_or_reply(event, "`Global leave from group chats...`")
+     er = 0
+     done = 0
+     async for x in event.client.iter_dialogs():
+         if x.is_group:
+             chat = x.id
+             try:
+                 done += 1
+                 await event.client(LeaveChannelRequest(chat))
+             except BaseException:
+                 er += 1
+     await Kyy.edit(
+         f"**Berhasil keluar dari {done} Gruop, Gagal keluar dari {er} Group**"
+     )
+     
+     
 @poci_cmd(pattern="chatinfo(?: |$)(.*)")
 async def info(event):
     xx = await edit_or_reply(event, "`Menganalisis Obrolan Ini...`")
@@ -439,11 +458,11 @@ async def _(event):
 async def get_users(event):
     man_ = event.text[11:]
     chat_man = man_.lower()
-    restricted = ["@GojoUserbot", "@GojoUserbot"]
+    restricted = ["@PocongUserbot", "@poconguserbot"]
     if chat_man in restricted:
         await edit_or_reply(event, "**Anda tidak dapat Mengundang Anggota dari sana.**")
         await event.client.send_message(
-            -1001635886716, "**Maaf Telah Mencuri Member dari Sini.**"
+            -1001267233272, "**Maaf Telah Mencuri Member dari Sini.**"
         )
         return
     if not man_:
@@ -569,8 +588,8 @@ CMD_HELP.update(
         "kickme": f"**Plugin : **`kickme`\
         \n\n  •  **Syntax :** `{cmd}kickme`\
         \n  •  **Function : **Keluar grup dengan menampilkan pesan Master has left this group, bye!!\
-        \n\n  •  **Syntax :** `{cmd}leave`\
-        \n  •  **Function : **Keluar grup dengan menampilkan pesan Master Telah Meninggalkan Grup, bye !!\
+        \n\n  •  **Syntax :** `{cmd}leaveall`\
+        \n  •  **Function : **Keluar dari semua grup yang anda masukin.\
         \n\n  •  **Syntax :** `{cmd}kikme`\
         \n  •  **Function : **Keluar grup dengan menampilkan pesan GC NYA JELEK GOBLOK KELUAR DULU AH CROTT 🥴\
     "
