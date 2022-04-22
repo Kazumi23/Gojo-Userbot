@@ -25,7 +25,7 @@ Gunakan bot ini dengan risiko Anda sendiri, dan gunakan dengan bijak.
 </details>
 <details>
 <summary><b>🔗Generate Setring Session</b></summary><br/>
-     <h4> Generate Session via Repl: </h4>
+     <p align="center"> Generate Session via Repl:</p>
 <p align="center"><a href="https://replit.com/@GumilarSukma/Gojo-Userbot?lite=1&outputonly=1"><img src="https://img.shields.io/badge/Generate%20On%20Repl-blueviolet?style=for-the-badge&logo=appveyor" width="200""/></a></p>
 </details>
 
