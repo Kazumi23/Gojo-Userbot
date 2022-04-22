@@ -1,6 +1,6 @@
 # <p align="center">GOJO USERBOT</p>
 
-<img src="https://telegra.ph/file/512e03d620115bba6e8b3.jpg">
+<img src="https://telegra.ph/file/142cb25695c36bc08211d.jpg">
 </p>
 
 
