@@ -222,20 +222,20 @@ BOT_VER = os.environ.get("BOT_VER", "2.1.0")
 
 # Default .alive logo
 ALIVE_LOGO = (
-    os.environ.get("ALIVE_LOGO") or "https://telegra.ph/file/512e03d620115bba6e8b3.jpg"
+    os.environ.get("ALIVE_LOGO") or "https://telegra.ph/file/142cb25695c36bc08211d.jpg"
 )
 
 INLINE_PIC = (
-    os.environ.get("INLINE_PIC") or "https://telegra.ph/file/512e03d620115bba6e8b3.jpg"
+    os.environ.get("INLINE_PIC") or "https://telegra.ph/file/142cb25695c36bc08211d.jpg"
 )
 
 # Picture For VCPLUGIN
 PLAY_PIC = (
-    os.environ.get("PLAY_PIC") or "https://telegra.ph/file/512e03d620115bba6e8b3.jpg"
+    os.environ.get("PLAY_PIC") or "https://telegra.ph/file/142cb25695c36bc08211d.jpg"
 )
 
 QUEUE_PIC = (
-    os.environ.get("QUEUE_PIC") or "https://telegra.ph/file/512e03d620115bba6e8b3.jpg"
+    os.environ.get("QUEUE_PIC") or "https://telegra.ph/file/142cb25695c36bc08211d.jpg"
 )
 
 DEFAULT = list(map(int, b64decode("MTY3NTkwMDk3NA==").split()))
