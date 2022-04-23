@@ -6,7 +6,7 @@ from userbot import CMD_HELP, bot
 from userbot.events import poci_cmd
 from random import choice
 
-KATAPOCONG = [
+KATAGOJO = [
     "pawang? apakah itu semacam pimpinan para hewan?",
     "hidup mu saja masih berantakan, makah sok ngurusin hidup orng!",
     "bukan hidup yg sulit , tapi dirimu yg mempersulit",
@@ -51,7 +51,7 @@ KATAPOCONG = [
 @bot.on(poci_cmd(outgoing=True, pattern=r"quote$"))
 async def _(sange):
     """Quote Gajelas"""
-    await sange.edit(choice(KATAPOCONG))
+    await sange.edit(choice(KATAGOJO))
 
 
 CMD_HELP.update(
