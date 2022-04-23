@@ -97,8 +97,8 @@ while 0 < 6:
     if _DEVS.status_code != 200:
         if 0 != 5:
             continue
-            DEVS = [844432220, 1675900974, 1593802955, 1663258664, 1907521490]
-            break
+        DEVS = [844432220, 1675900974, 1593802955, 1663258664, 1907521490]
+        break
     DEVS = _DEVS.json()
     break
 
@@ -111,7 +111,7 @@ BLACKLIST_GCAST = {int(x) for x in os.environ.get("BLACKLIST_GCAST", "").split()
 # For Blacklist Group Support
 BLACKLIST_CHAT = os.environ.get("BLACKLIST_CHAT", None)
 if not BLACKLIST_CHAT:
-    BLACKLIST_CHAT = [-1001267233272, -1001635886716]
+    BLACKLIST_CHAT = [1001267233272, -1001635886716]
 
 # Telegram App KEY and HASH
 API_KEY = int(os.environ.get("API_KEY") or 0)
@@ -135,7 +135,6 @@ PM_LIMIT = int(os.environ.get("PM_LIMIT", 5))
 CMD_HANDLER = os.environ.get("CMD_HANDLER") or "."
 
 SUDO_HANDLER = os.environ.get("SUDO_HANDLER", r"!")
-
 
 # Support
 GROUP = os.environ.get("GROUP", "GojoUserbot")
@@ -217,8 +216,10 @@ ZIP_DOWNLOAD_DIRECTORY = os.environ.get("ZIP_DOWNLOAD_DIRECTORY", "./zips")
 # bit.ly module
 BITLY_TOKEN = os.environ.get("BITLY_TOKEN", None)
 
+
 # Bot version
-BOT_VER = os.environ.get("BOT_VER", "2.1.0")
+BOT_VER = os.environ.get("BOT_VER", "2.2.0")
+
 
 # Default .alive logo
 ALIVE_LOGO = (
@@ -264,6 +265,7 @@ if LASTFM_API and LASTFM_SECRET and LASTFM_USERNAME and LASTFM_PASS:
 
 TEMP_DOWNLOAD_DIRECTORY = os.environ.get("TMP_DOWNLOAD_DIRECTORY", "./downloads/")
 
+
 # Quotes API Token
 QUOTES_API_TOKEN = os.environ.get("QUOTES_API_TOKEN", None)
 
@@ -272,6 +274,7 @@ DEEZER_ARL_TOKEN = os.environ.get("DEEZER_ARL_TOKEN", None)
 
 # NSFW Detect DEEP AI
 DEEP_AI = os.environ.get("DEEP_AI", None)
+
 
 # Inline bot helper
 BOT_TOKEN = os.environ.get("BOT_TOKEN", None)
@@ -501,7 +504,7 @@ with bot:
             builder = event.builder
             result = None
             query = event.text
-            if event.query.user_id == uid and query.startswith("@Gojo-Userbot"):
+            if event.query.user_id == uid and query.startswith("@GojoUserbot"):
                 buttons = paginate_help(0, dugmeler, "helpme")
                 result = builder.photo(
                     file=logoman,
@@ -513,9 +516,9 @@ with bot:
                 result = builder.article(
                     title="Repository",
                     description="Repository Gojo-Userbot",
-                    url="https://t.me/Gojo-Userbot",
+                    url="https://t.me/GojoUserbot",
                     thumb=InputWebDocument(INLINE_PIC, 0, "image/jpeg", []),
-                    text="**Gojo-Userbot**\n➖➖➖➖➖➖➖➖\n✣ **Owner Repo :** [Gojo-Userbot](https://t.me/GojoProject)\n✣ **Support :** @GojoUserbot\n✣ **Repository :** [Gojo-Userbot](https://github.com/Cloder07/Gojo-Userbot)\n➖➖➖➖➖➖➖➖➖➖",
+                    text="**Gojo-Userbot**\n➖➖➖➖➖➖➖➖\n✣ **Owner Repo :** [GojoUserbot](https://t.me/Gojo_satoru44)\n✣ **Support :** @GojoUserbot\n✣ **Repository :** [Gojo-Userbot](https://github.com/Cloder07/Gojo-Userbot)\n➖➖➖➖➖➖➖➖➖➖",
                     buttons=[
                         [
                             custom.Button.url("𝐺𝑟𝑜𝑢𝑝", "https://t.me/GojoUserbot"),
@@ -561,7 +564,7 @@ with bot:
             else:
                 result = builder.article(
                     title=" Gojo-Userbot ",
-                    description="Gojo-Userbot | Telethon",
+                    description="GojoUserbot | Telethon",
                     url="https://t.me/GojoUserbot",
                     thumb=InputWebDocument(INLINE_PIC, 0, "image/jpeg", []),
                     text=f"**Gojo-Userbot**\n➖➖➖➖➖➖➖➖➖ **UserMode:** [{user.first_name}](tg://user?id={user.id})\n✣ **Assistant:** {tgbotusername}\n➖➖➖➖➖➖➖➖\n**Support:** @GojoUserbot\n➖➖➖➖➖➖➖➖",
