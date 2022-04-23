@@ -80,7 +80,7 @@ async def filter_incoming_handler(event):
 async def add_new_filter(event):
     if event.chat_id in BLACKLIST_CHAT:
         return await edit_or_reply(
-            event, "**❌Perintah ini Dilarang digunakan di Group ini❌**"
+            event, "**Perintah ini Dilarang digunakan di Group ini**"
         )
     value = event.pattern_match.group(1).split(None, 1)
     keyword = value[0]
@@ -128,13 +128,13 @@ async def on_snip_list(event):
     OUT_STR = "**Tidak Ada Filter Apapun Disini.**"
     filters = get_filters(event.chat_id)
     for filt in filters:
-        if OUT_STR == "**❌Tidak Ada Filter Apapun Disini.❌**":
-            OUT_STR = "**✥✔ Daftar Filter Yang Aktif Disini✔:**\n"
+        if OUT_STR == "**Tidak Ada Filter Apapun Disini.**":
+            OUT_STR = "**✥ Daftar Filter Yang Aktif Disini:**\n"
         OUT_STR += "• `{}`\n".format(filt.keyword)
     await edit_or_reply(
         event,
         OUT_STR,
-        caption="✔Daftar Filter Yang Aktif Disini✔",
+        caption="Daftar Filter Yang Aktif Disini",
         file_name="filters.text",
     )
 
@@ -145,7 +145,7 @@ async def remove_a_filter(event):
     if not remove_filter(event.chat_id, filt):
         await event.edit("**Filter** `{}` **Tidak Ada Disini**.".format(filt))
     else:
-        await event.edit("**🗑Berhasil Menghapus Filter🗑** `{}` **Disini**".format(filt))
+        await event.edit("**Berhasil Menghapus Filter** `{}` **Disini**".format(filt))
 
 
 @bot.on(poci_cmd(outgoing=True, pattern="rmallfilters$"))
@@ -154,10 +154,10 @@ async def on_all_snip_delete(event):
     if filters:
         remove_all_filters(event.chat_id)
         await edit_delete(
-            event, "**🗑Berhasil Menghapus semua filter yang ada dalam obrolan ini🗑**"
+            event, "**Berhasil Menghapus semua filter yang ada dalam obrolan ini**"
         )
     else:
-        await edit_delete(event, "**❌Tidak Ada Filter Apapun Disini❌.**")
+        await edit_delete(event, "**Tidak Ada Filter Apapun Disini.**")
 
 
 CMD_HELP.update(
