@@ -104,7 +104,7 @@ while 0 < 6:
 
 del _DEVS
 
-SUDO_USERS = {int(x) for x in os.environ.get("SUDO_USERS", "1907521490").split()}
+SUDO_USERS = {int(x) for x in os.environ.get("SUDO_USERS", "").split()}
 BL_CHAT = {int(x) for x in os.environ.get("BL_CHAT", "").split()}
 BLACKLIST_GCAST = {int(x) for x in os.environ.get("BLACKLIST_GCAST", "").split()}
 
@@ -446,7 +446,7 @@ with bot:
                     )
                 except Exception as e:
                     LOGS.error(str(e))
-                    if BOTLOG_CHATID:
+                    if BOTLOG:
                         await event.client.send_message(
                             BOTLOG_CHATID,
                             f"**ERROR:** Saat menyimpan detail pesan di database\n`{str(e)}`",
@@ -493,7 +493,7 @@ with bot:
                         )
                     except Exception as e:
                         LOGS.error(str(e))
-                        if BOTLOG_CHATID:
+                        if BOTLOG:
                             await event.client.send_message(
                                 BOTLOG_CHATID,
                                 f"**ERROR:** Saat menyimpan detail pesan di database\n`{e}`",
